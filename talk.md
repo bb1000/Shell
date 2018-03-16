@@ -108,7 +108,7 @@ $ my_first_file
 
 ---
 
-## A world which is more visual
+## "Hidden" files
 
 Everything is governed by a text-file... Understand which file describes what!
 
@@ -139,7 +139,7 @@ User kronop is a member of the group around user sknippen. The date of creation 
 
 ---
 
-## A world which is more visual
+## Permissions
 
 The permissions of the files (and directories if the first symbol is a `d`) are given in the first column. The first three symbols denote the usage for the owner of the file: `rwx` points at reading, writing and executing. The following three symbols denote the use for members of the group sknippen, of which the user kronop is a member.
 
@@ -156,7 +156,7 @@ $ ls -alh my_first_empty_program
 
 ---
 
-## A world which is more visual
+## Change permissions
 
 The file `my_first_empty_program` is readable and writable for kronop, and it is just readable for the members of the group sknippen and for the rest of the users. It is not yet executable, therefore `chmod` is used.
 
@@ -198,7 +198,7 @@ export PATH=/home/kronop/bin:$PATH
 
 ---
 
-## When the `.bashrc` file is changed...
+## When the `.bashrc` file has been changed...
 
 ... you have to reload or `source` it so that the changes can take effect:
 
@@ -260,6 +260,44 @@ $ grep Erik birthdates_village
 Erik Ohlsson 1972-12-3
 
 ```
+
+---
+
+## What is the structure among my files?
+
+At each instance in the hierarchy of the data, keyword `tree` can show the structure of the directories and the files at that position and below.
+
+```
+$ pwd
+/home/kronop
+$ tree
+```
+
+<img src="{{ base }}/img/tree.png" style="width: 300px;"/>
+
+---
+
+## When you don't know...
+
+Linux has a built-in help function, which is especially useful when you do not know which optional parameters can be used... Simply write `man` followed by the command you would like to have more information about. `man ls` will give various pages of information about the `ls` command...
+
+```
+$ man ls
+
+LS(1)                            User Commands                           LS(1)
+
+NAME
+       ls - list directory contents
+
+SYNOPSIS
+       ls [OPTION]... [FILE]...
+
+DESCRIPTION
+       List  information  about  the FILEs (the current directory by default).
+       (...)
+		     
+```
+
 
 
 <!--
