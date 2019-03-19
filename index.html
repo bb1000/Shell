@@ -151,99 +151,237 @@ KTH
 
 layout: false
 
+## Goal
+
+To be able to work with Linux command-line interface (CLI).
+
++ How to start a shell
+
+  - On Linux/Mac: Open a terminal window.
+
+  - On Windows: Use WSL.
+
++ Common shell commands
+
++ Files (move/copy/remove)
+
++ Permissions (read/write/execute)
+
++ Configure your bash with .bashrc
+
++ Use a text editor
+
++ Retrieve information from files
+
+---
+
+layout: false
+
 ## First essentials
 
-Make a directory: `mkdir MY_FIRST_DIRECTORY`
-Create an empty file: `touch my_first_file`
-List all the files (and directories) in the current directory: `ls`
-Go into the directory MY_FIRST_DIRECTORY: `cd MY_FIRST_DIRECTORY`
 To show in which directory the cursor is located: `pwd`
-Go out of the directory: `cd ..` 
+
+List all the files (and directories) in the current directory: `ls`
+
+Make a directory: `mkdir my_first_directory`
 
 ```
 $ pwd
 /home/kronop
-$ ls
-$ mkdir MY_FIRST_DIRECTORY
-$ ls
-examples.desktop  MY_FIRST_DIRECTORY
-$ cd MY_FIRST_DIRECTORY
-$ touch my_first_file
-$ ls
-my_first_file
-$ pwd
-/home/kronop/MY_FIRST_DIRECTORY
-$ cd ..
-$ ls
-examples.desktop  MY_FIRST_DIRECTORY
 
+$ ls
+examples.desktop
+
+$ mkdir my_first_directory
+
+$ ls
+examples.desktop  my_first_directory
 ```
 
-To remove an empty directory, `rmdir` is used. Files are deleted by `rm`. 
+---
 
-Remark: for a python input cursor, we use `&gt;&gt;&gt;` in this course - for a linux input cursor, we use `$`. 
+layout: false
+
+## First essentials
+
+To show in which directory the cursor is located: `pwd`
+
+List all the files (and directories) in the current directory: `ls`
+
+Make a directory: `mkdir my_first_directory`
+
+```
+$ pwd
+/home/kronop
+
+$ ls
+examples.desktop
+
+$ mkdir my_first_directory
+
+$ ls
+examples.desktop  my_first_directory
+```
+
+Useful flag for mkdir:
+
+```
+mkdir -p my_first_directory
+
+mkdir -p first_dir/second_dir/third_dir
+```
+
+---
+
+layout: false
+
+## First essentials (continued)
+
+Go into the directory my_first_directory: `cd my_first_directory`
+
+Create an empty file: `touch my_first_file`
+
+Go out of the directory: `cd ..` 
+
+```
+$ cd my_first_directory
+
+$ pwd
+/home/kronop/my_first_directory
+
+$ touch my_first_file
+
+$ ls
+my_first_file
+
+$ cd ..
+
+$ pwd
+/home/kronop
+
+$ ls
+examples.desktop  my_first_directory
+```
 
 ---
 
 ## Move files
 
-To rename files and to move files to another directory, the same keyword `mv` is used. 
+The command `mv` can be used to 
+
+  + rename a file
+
+  + move one or more files to another directory
 
 ```
-$ cd MY_FIRST_DIRECTORY
-$ mv my_first_file my_first_other_name
+$ cd my_first_directory
+
 $ ls
-my_first_other_name
-$ mv my_first_other_name ../
-$ cd ..
-$ pwd
-/home/kronop
-$ ls
-examples.desktop  MY_FIRST_DIRECTORY my_first_other_name
-$ mv my_first_other_name MY_FIRST_DIRECTORY/my_first_file
-$ ls MY_FIRST_DIRECTORY 
 my_first_file
 
+$ mv my_first_file my_first_file_renamed
+
+$ ls
+my_first_file_renamed
+
+$ mv my_first_file_renamed ../
+
+$ cd ..
+```
+
+---
+
+## Move files (continued)
+
+The command `mv` can be used to 
+
+  + rename a file
+
+  + move one or more files to another directory
+
+```
+$ pwd
+/home/kronop
+
+$ ls
+examples.desktop my_first_directory my_first_file_renamed
+
+$ mv my_first_file_renamed my_first_directory/my_first_file
+
+$ ls my_first_directory 
+my_first_file
 ```
 
 ---
 
 ## Copy files
 
-Files are copied using `cp` - remark that the user always has to specify the destination...
+Files are copied using `cp` - note that the user always has to specify the destination.
 
 ```
-$ cd MY_FIRST_DIRECTORY
+$ cd my_first_directory
+
 $ cp my_first_file copy_of_my_first_file
+
 $ ls
-my_first_file copy_of_my_first_file
-$ cp copy_of_my_first_file ../
-$ cd ..
-$ pwd
-/home/kronop
-$ ls
-examples.desktop  MY_FIRST_DIRECTORY copy_of_my_first_file
-$ ls MY_FIRST_DIRECTORY 
 my_first_file copy_of_my_first_file
 
+$ cp copy_of_my_first_file ../
+
+$ cd ..
+
+$ pwd
+/home/kronop
+
+$ ls
+examples.desktop  my_first_directory copy_of_my_first_file
+
+$ ls my_first_directory 
+my_first_file copy_of_my_first_file
 ```
 
 ---
 
-### Remove files
+## Remove files
 
-Keyword: `rm`...
+Files and directories can be removed by command `rm`.
 
 ```
 $ pwd
 /home/kronop
-$ rm copy_of_my_first_file MY_FIRST_DIRECTORY/copy_of_my_first_file
-$ ls
-examples.desktop  MY_FIRST_DIRECTORY
-$ ls MY_FIRST_DIRECTORY
-$ my_first_file
 
+$ rm copy_of_my_first_file my_first_directory/copy_of_my_first_file
+
+$ ls
+examples.desktop  my_first_directory
+
+$ ls my_first_directory
+my_first_file
 ```
+
+---
+
+## Commands so far...
+
++ `pwd`: print current working directory
+
++ `ls`: list files and directories
+
++ `mkdir`: create directory
+
++ `cd`: change directory 
+
++ `touch`: create empty file; update file/directory
+
++ `mv`: rename/move file and/or directory
+
++ `cp`: copy file and/or directory
+
++ `rm`: remove file and/or directory
+
+Quick reference guide:
+
+https://files.fosswire.com/2007/08/fwunixref.pdf
 
 ---
 
