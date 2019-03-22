@@ -12,17 +12,11 @@ KTH
 
 layout: false
 
-## Goal
+## Learning objectives
 
 To be able to work with Linux command-line interface (CLI).
 
-+ How to start a shell
-
-  - On Linux/Mac: Open a terminal window.
-
-  - On Windows: Use WSL.
-
-+ Common shell commands
++ Bash basics
 
 + Files (move/copy/remove)
 
@@ -36,15 +30,35 @@ To be able to work with Linux command-line interface (CLI).
 
 ---
 
-layout: false
+## Shell basics
+
++ A shell is...
+
+  - a user interface
+
+  - the outermost layer around the operating system kernel
+
++ This lecture focuses on...
+
+  - text shell (command-line interface)
+
+  - <a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">bash</a> in particular
+
++ How to start a bash shell
+
+  - On Linux/Mac: Open a terminal window.
+
+  - On Windows: Use [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
+
+---
 
 ## First essentials
 
-To show in which directory the cursor is located: `pwd`
+To show the directory (folder) your are in: `pwd`
 
 List all the files (and directories) in the current directory: `ls`
 
-Make a directory: `mkdir my_first_directory`
+Make a directory: `mkdir my_dir`
 
 ```
 $ pwd
@@ -53,10 +67,10 @@ $ pwd
 $ ls
 examples.desktop
 
-$ mkdir my_first_directory
+$ mkdir my_dir
 
 $ ls
-examples.desktop  my_first_directory
+examples.desktop  my_dir
 ```
 
 ---
@@ -69,7 +83,7 @@ To show in which directory the cursor is located: `pwd`
 
 List all the files (and directories) in the current directory: `ls`
 
-Make a directory: `mkdir my_first_directory`
+Make a directory: `mkdir my_dir`
 
 ```
 $ pwd
@@ -78,16 +92,16 @@ $ pwd
 $ ls
 examples.desktop
 
-$ mkdir my_first_directory
+$ mkdir my_dir
 
 $ ls
-examples.desktop  my_first_directory
+examples.desktop my_dir
 ```
 
 Useful flag for mkdir:
 
 ```
-mkdir -p my_first_directory
+mkdir -p my_dir
 
 mkdir -p first_dir/second_dir/third_dir
 ```
@@ -98,22 +112,22 @@ layout: false
 
 ## First essentials (continued)
 
-Go into the directory my_first_directory: `cd my_first_directory`
+Go into the directory: `cd my_dir`
 
-Create an empty file: `touch my_first_file`
+Create an empty file: `touch my_file`
 
 Go out of the directory: `cd ..` 
 
 ```
-$ cd my_first_directory
+$ cd my_dir
 
 $ pwd
-/home/kronop/my_first_directory
+/home/kronop/my_dir
 
-$ touch my_first_file
+$ touch my_file
 
 $ ls
-my_first_file
+my_file
 
 $ cd ..
 
@@ -121,7 +135,7 @@ $ pwd
 /home/kronop
 
 $ ls
-examples.desktop  my_first_directory
+examples.desktop  my_dir
 ```
 
 ---
@@ -135,17 +149,17 @@ The command `mv` can be used to
   + move one or more files to another directory
 
 ```
-$ cd my_first_directory
+$ cd my_dir
 
 $ ls
-my_first_file
+my_file
 
-$ mv my_first_file my_first_file_renamed
+$ mv my_file my_file_new
 
 $ ls
-my_first_file_renamed
+my_file_new
 
-$ mv my_first_file_renamed ../
+$ mv my_file_new ../
 
 $ cd ..
 ```
@@ -165,12 +179,12 @@ $ pwd
 /home/kronop
 
 $ ls
-examples.desktop my_first_directory my_first_file_renamed
+examples.desktop my_dir my_file_new
 
-$ mv my_first_file_renamed my_first_directory/my_first_file
+$ mv my_file_new my_dir/my_file
 
-$ ls my_first_directory 
-my_first_file
+$ ls my_dir 
+my_file
 ```
 
 ---
@@ -180,14 +194,14 @@ my_first_file
 Files are copied using `cp` - note that the user always has to specify the destination.
 
 ```
-$ cd my_first_directory
+$ cd my_dir
 
-$ cp my_first_file copy_of_my_first_file
+$ cp my_file copy_of_my_file
 
 $ ls
-my_first_file copy_of_my_first_file
+my_file copy_of_my_file
 
-$ cp copy_of_my_first_file ../
+$ cp copy_of_my_file ../
 
 $ cd ..
 
@@ -195,10 +209,10 @@ $ pwd
 /home/kronop
 
 $ ls
-examples.desktop  my_first_directory copy_of_my_first_file
+examples.desktop  my_dir copy_of_my_file
 
-$ ls my_first_directory 
-my_first_file copy_of_my_first_file
+$ ls my_dir 
+my_file copy_of_my_file
 ```
 
 ---
@@ -211,13 +225,13 @@ Files and directories can be removed by command `rm`.
 $ pwd
 /home/kronop
 
-$ rm copy_of_my_first_file my_first_directory/copy_of_my_first_file
+$ rm copy_of_my_file my_dir/copy_of_my_file
 
 $ ls
-examples.desktop  my_first_directory
+examples.desktop  my_dir
 
-$ ls my_first_directory
-my_first_file
+$ ls my_dir
+my_file
 ```
 
 ---
@@ -246,6 +260,33 @@ https://files.fosswire.com/2007/08/fwunixref.pdf
 
 ---
 
+## Relative vs. absolute paths
+
+```
+$ pwd
+/home/kronop
+
+$ ls my_dir
+my_file
+
+$ ls /home/kronop/my_dir
+my_file
+
+$ cd my_dir
+
+$ ls
+my_file
+
+$ cd /home/kronop/my_dir
+
+$ ls
+my_file
+
+$ cd
+```
+
+---
+
 ## Hidden files
 
 A file is hidden if its name starts with a ".". Hidden files are only listed by
@@ -264,7 +305,7 @@ drwxr-xr-x 31 root   root     4,0K feb  4 20:54 ..
 -rw-r--r--  1 kronop sknippen 3,6K nov 17  2016 .bashrc
 drwx------  2 kronop sknippen 4,0K nov 17  2016 .cache
 -rw-r--r--  1 kronop sknippen 8,8K nov 17  2016 examples.desktop
-drwxr-xr-x  2 kronop sknippen 4,0K feb 11 21:39 my_first_directory
+drwxr-xr-x  2 kronop sknippen 4,0K feb 11 21:39 my_dir
 ```
 
 User kronop is a member of the group around user sknippen. The date of creation
@@ -273,7 +314,7 @@ Bytes). The response above can be compared with
 
 ```
 $ ls
-examples.desktop my_first_directory
+examples.desktop my_dir
 ```
 
 ---
@@ -301,7 +342,7 @@ drwxr-xr-x 31 root   root     4,0K feb  4 20:54 ..
 -rw-r--r--  1 kronop sknippen 3,6K nov 17  2016 .bashrc
 drwx------  2 kronop sknippen 4,0K nov 17  2016 .cache
 -rw-r--r--  1 kronop sknippen 8,8K nov 17  2016 examples.desktop
-drwxr-xr-x  2 kronop sknippen 4,0K feb 11 21:39 my_first_directory
+drwxr-xr-x  2 kronop sknippen 4,0K feb 11 21:39 my_dir
 ```
 
 ---
@@ -318,17 +359,17 @@ certainly for other people.
 Programs and scripts are usually made executable (`x`). 
 
 ```
-$ touch my_first_empty_program
+$ touch my_empty_program
 
-$ ls -alh my_first_empty_program
--rw-r--r-- 1 kronop sknippen 0 feb 11 21:54 my_first_empty_program
+$ ls -alh my_empty_program
+-rw-r--r-- 1 kronop sknippen 0 feb 11 21:54 my_empty_program
 ```
 
 ---
 
 ## Change permissions
 
-The file `my_first_empty_program` is readable and writable for kronop, and it
+The file `my_empty_program` is readable and writable for kronop, and it
 is just readable for the members of the group sknippen and for the rest of the
 users. It is not yet executable, therefore `chmod` is used.
 
@@ -336,15 +377,15 @@ users. It is not yet executable, therefore `chmod` is used.
 g+x` gives also the members of the group the opportunity to run the file.
 
 ```
-$ chmod u+x my_first_empty_program
+$ chmod u+x my_empty_program
 
-$ ls -alh my_first_empty_program
--rwxr--r-- 1 kronop sknippen 0 feb 11 21:54 my_first_empty_program
+$ ls -alh my_empty_program
+-rwxr--r-- 1 kronop sknippen 0 feb 11 21:54 my_empty_program
 
-$ chmod g+x my_first_empty_program
+$ chmod g+x my_empty_program
 
-$ ls -alh my_first_empty_program
--rwxr-xr-- 1 kronop sknippen    0 feb 11 21:54 my_first_empty_program
+$ ls -alh my_empty_program
+-rwxr-xr-- 1 kronop sknippen    0 feb 11 21:54 my_empty_program
 ```
 
 ---
@@ -374,9 +415,17 @@ export PATH=/home/kronop/bin:$PATH
 
 ---
 
-## When the `.bashrc` file has been changed...
+## The Bash shell startup file: ~/.bashrc (continued)
 
-... you have to reload or `source` it so that the changes can take effect.
+Other useful settings:
+
+```
+alias ll="ls -l"
+alias grep="grep --color"
+```
+
+When the .bashrc file has been changed, you have to reload or `source` it so
+that the changes can take effect.
 
 ```
 $ cd
@@ -385,6 +434,12 @@ $ pwd
 /home/kronop
 
 $ source .bashrc
+```
+
+If you are not in your home directory
+
+```
+$ source ~/.bashrc
 ```
 
 ---
@@ -418,31 +473,30 @@ It is a general advice to keep all your files ordered. It might be easy at this
 moment to find files back, but within three months, you should still know which
 file was connected with what project and how it was created... 
 
-However, to search files `find ./ -name` is used. The `./` points at the
+However, to search files `find . -name` is used. The `.` points at the current
 directory where (and down) the file is searched.
 
 ```
 $ pwd
 /home/kronop
 
-$ find ./ -name my_first_file
-./my_first_directory/my_first_file
+$ find . -name my_file
+./my_dir/my_file
 ```
 
 ---
 
 ## Searching information in a file
 
-Imagine user kronop has to search the birth date of a friend Erik Ohlsson in a
-file which lists all the inhabitants of the village with their data.
+Imagine user kronop has to search the birth date of a friend Erik in a
+file.
 
 ```
-$ cat birthdates_village
-Olav Carlsson 1969-01-12
-Emma Karlsson 1981-04-23
-Erik Ohlsson 1972-12-3
-Mohammed Puidgemon 1988-02-29
-Helen Tantra  1945-09-15
+$ cat birthdates
+Emma 1981-04
+Erik 1972-12
+Mohammed 1988-02
+Helen 1945-09
 (...)
 ```
 
@@ -451,8 +505,8 @@ Helen Tantra  1945-09-15
 In stead of browsing through the file, the linux function `grep` can be used.
 
 ```
-$ grep Erik birthdates_village
-Erik Ohlsson 1972-12-3
+$ grep Erik birthdates
+Erik 1972-12
 ```
 
 ---
@@ -467,9 +521,13 @@ $ pwd
 /home/kronop
 
 $ tree
+.
+├── examples.desktop
+└── my_dir
+    ├── birthdates
+    ├── my_empty_program
+    └── my_file
 ```
-
-<img src="{{ base }}/img/tree.png" style="width: 300px;"/>
 
 ---
 
